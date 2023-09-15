@@ -1,6 +1,40 @@
 spring:
   application:
     name: construction-management
+  profiles:
+    active: dev
+
+springdoc:
+  swagger-ui:
+    path: /obras-doc.html
+    operationsSorter: method
+
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+  datasource:
+    url: jdbc:postgresql://db:5432/constructions
+    username: root
+    password: root
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    open-in-view: false
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
   datasource:
     url: jdbc:h2:~/test
     username: sa
@@ -16,8 +50,3 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.H2Dialect
-
-springdoc:
-  swagger-ui:
-    path: /obras-doc.html
-    operationsSorter: method
