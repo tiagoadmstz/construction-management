@@ -16,3 +16,8 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.H2Dialect
+
+springdoc:
+  swagger-ui:
+    path: /obras-doc.html
+    operationsSorter: method
