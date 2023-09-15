@@ -1,5 +1,8 @@
 package io.github.tiagoadmstz.cm.controllers;
 
+import io.github.tiagoadmstz.cm.dtos.ConstructionDto;
+import io.github.tiagoadmstz.cm.dtos.PrivateConstructionDto;
+import io.github.tiagoadmstz.cm.dtos.PublicConstructionDto;
 import io.github.tiagoadmstz.cm.entities.Construction;
 import io.github.tiagoadmstz.cm.entities.PrivateConstruction;
 import io.github.tiagoadmstz.cm.entities.PublicConstruction;
@@ -23,35 +26,35 @@ public class ConstructionController {
     }
 
     @GetMapping("/obras")
-    public ResponseEntity<List<Construction>> findAllConstructions() {
+    public ResponseEntity<List<ConstructionDto>> findAllConstructions() {
         return ResponseEntity.ok(constructionService.findAllConstructions());
     }
 
     @GetMapping("/obras/{ownercode}")
-    public ResponseEntity<List<Construction>> findAllConstructionsByOwnerCode(@PathVariable("ownercode") Long id) {
+    public ResponseEntity<List<ConstructionDto>> findAllConstructionsByOwnerCode(@PathVariable("ownercode") Long id) {
         return ResponseEntity.ok(constructionService.findAllConstructionsByOwnerCode(id));
     }
 
     @GetMapping("/obras/public")
-    public ResponseEntity<List<PublicConstruction>> findAllPublicConstructions() {
+    public ResponseEntity<List<ConstructionDto>> findAllPublicConstructions() {
         return ResponseEntity.ok(constructionService.findAllPublicConstructions());
     }
 
     @GetMapping("/obras/private")
-    public ResponseEntity<List<PrivateConstruction>> findAllPrivateConstructions() {
+    public ResponseEntity<List<ConstructionDto>> findAllPrivateConstructions() {
         return ResponseEntity.ok(constructionService.findAllPrivateConstructions());
     }
 
     @PostMapping("/obrapublica")
-    public ResponseEntity<PublicConstruction> createPublicConstruction(@RequestBody PublicConstruction publicConstruction) {
+    public ResponseEntity<PublicConstructionDto> createPublicConstruction(@RequestBody PublicConstructionDto publicConstructionDto) {
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body(constructionService.createPublicConstruction(publicConstruction));
+                .body(constructionService.createPublicConstruction(publicConstructionDto));
     }
 
     @PostMapping("/obraprivada")
-    public ResponseEntity<PrivateConstruction> createPrivateConstruction(@RequestBody PrivateConstruction privateConstruction) {
+    public ResponseEntity<PrivateConstructionDto> createPrivateConstruction(@RequestBody PrivateConstructionDto privateConstructionDto) {
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body(constructionService.createPrivateConstruction(privateConstruction));
+                .body(constructionService.createPrivateConstruction(privateConstructionDto));
     }
 
 }

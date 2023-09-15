@@ -1,5 +1,6 @@
 package io.github.tiagoadmstz.cm.entities;
 
+import io.github.tiagoadmstz.cm.dtos.OwnerDto;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -8,9 +9,13 @@ import jakarta.persistence.Id;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import java.io.Serializable;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "owners")
 @SequenceGenerator(name = "owners_seq", sequenceName = "owners_seq", allocationSize = 1)
@@ -26,4 +31,9 @@ public class Owner implements Serializable {
     @Column(name = "name", length = 50)
     private String name;
 
+    public Owner(OwnerDto ownerDto) {
+        this.id = ownerDto.getId();
+        this.cpf = ownerDto.getCpf();
+        this.name = ownerDto.getName();
+    }
 }

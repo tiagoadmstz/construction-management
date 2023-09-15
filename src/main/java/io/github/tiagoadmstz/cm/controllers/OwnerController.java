@@ -1,5 +1,6 @@
 package io.github.tiagoadmstz.cm.controllers;
 
+import io.github.tiagoadmstz.cm.dtos.OwnerDto;
 import io.github.tiagoadmstz.cm.entities.Owner;
 import io.github.tiagoadmstz.cm.services.OwnerService;
 import org.springframework.http.HttpStatus;
@@ -20,7 +21,7 @@ public class OwnerController {
     }
 
     @PostMapping
-    public ResponseEntity<Owner> create(@RequestBody Owner owner) {
+    public ResponseEntity<OwnerDto> create(@RequestBody OwnerDto owner) {
         return ResponseEntity.status(HttpStatus.CREATED).body(ownerService.save(owner));
     }
 }
